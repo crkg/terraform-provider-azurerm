@@ -21,6 +21,9 @@ func NewClient(o *common.ClientOptions) *Client {
 
 	subscriptionClient := subscriptionAlias.NewClientWithBaseURI(o.ResourceManagerEndpoint)
 	o.ConfigureClient(&subscriptionClient.Client, o.ResourceManagerAuthorizer)
+	
+	tagsClient := resources.NewTagsClientWithBaseURI(o.ResourceManagerEndpoint, o.SubscriptionId)
+	o.ConfigureClient(&tagsClient.Client, o.ResourceManagerAuthorizer)
 
 	return &Client{
 		AliasClient:        &aliasClient,
